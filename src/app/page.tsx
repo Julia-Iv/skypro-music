@@ -2,7 +2,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import './page.css';
 import classnames from 'classnames';
-import styles from './page.module.css'
+import styles from './page.module.css';
+import Bar from './components/Bar/Bar';
+import MainSidebar from './components/MainSidebar/MainSidebar';
 
 export default function Home() {
   return (
@@ -67,7 +69,14 @@ export default function Home() {
             </div>
             <div className={'centerblock__content'}>
               <div className={'content__title'}>
-                <div className={classnames(styles.playlistTitle__col, styles.col01)}>Трек</div>
+                <div
+                  className={classnames(
+                    styles.playlistTitle__col,
+                    styles.col01,
+                  )}
+                >
+                  Трек
+                </div>
                 <div className={'playlistTitle__col col02'}>Исполнитель</div>
                 <div className={'playlistTitle__col col03'}>Альбом</div>
                 <div className={'playlistTitle__col col04'}>
@@ -248,55 +257,9 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className={'main__sidebar'}>
-            <div className={'sidebar__personal'}>
-              <p className={'sidebar__personalName'}>Sergey.Ivanov</p>
-              <div className={'sidebar__icon'}>
-                <svg>
-                  <use xlinkHref="/img/icon/sprite.svg#logout"></use>
-                </svg>
-              </div>
-            </div>
-            <div className={'sidebar__block'}>
-              <div className={'sidebar__list'}>
-                <div className={'sidebar__item'}>
-                  <Link className={'sidebar__link'} href="#">
-                    <Image
-                      className={'sidebar__img'}
-                      src="/img/playlist01.png"
-                      alt="day's playlist"
-                      width={250}
-                      height={170}
-                    />
-                  </Link>
-                </div>
-                <div className={'sidebar__item'}>
-                  <Link className={'sidebar__link'} href="#">
-                    <Image
-                      className={'sidebar__img'}
-                      src="/img/playlist02.png"
-                      alt="day's playlist"
-                      width={250}
-                      height={170}
-                    />
-                  </Link>
-                </div>
-                <div className={'sidebar__item'}>
-                  <Link className={'sidebar__link'} href="#">
-                    <Image
-                      className={'sidebar__img'}
-                      src="/img/playlist03.png"
-                      alt="day's playlist"
-                      width={250}
-                      height={170}
-                    />
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
+          <MainSidebar />
         </main>
-        
+        <Bar />
         <footer className="footer"></footer>
       </div>
     </div>
