@@ -13,7 +13,6 @@
   margin-bottom: 20px;
 }
 
-
 .nav__menu {
   display: block;
   visibility: visible;
@@ -67,4 +66,3 @@
   justify-content: space-between;
   cursor: pointer;
 }
-

@@ -1,4 +1,3 @@
-
 import styles from './page.module.css';
 import Bar from './components/Bar/Bar';
 import MainSidebar from './components/MainSidebar/MainSidebar';
