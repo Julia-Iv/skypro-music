@@ -1,18 +1,14 @@
 .bar {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
   background: rgba(28, 28, 28, 0.5);
+  z-index: 100;
 }
 
 .bar__content {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
   flex-direction: column;
 }
 .bar__playerProgress {
@@ -23,52 +19,27 @@
 
 .bar__playerBlock {
   height: 73px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
   justify-content: space-between;
 }
 
 .bar__player {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: start;
-  -ms-flex-pack: start;
   justify-content: flex-start;
 }
 
 .bar__volumeBlock {
   width: auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   padding: 0 92px 0 0;
 }
 
 .player__controls {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: row;
   flex-direction: row;
   padding: 0 27px 0 31px;
 }
@@ -78,11 +49,7 @@
 .player__btnRepeat,
 .player__btnShuffle {
   padding: 5px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
 }
 
@@ -117,6 +84,17 @@
   stroke: #d9d9d9;
 }
 
+.player__btnPrev:hover svg,
+.player__btnPlay:hover svg,
+.player__btnNext:hover svg {
+  fill: #acacac;
+}
+
+.player__btnPrev:active svg,
+.player__btnPlay:active svg,
+.player__btnNext:active svg {
+  fill: #ffffff;
+}
 .player__btnRepeat {
   margin-right: 24px;
 }
@@ -129,11 +107,7 @@
 }
 
 .player__btnShuffle {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
 }
 
@@ -145,12 +119,7 @@
 }
 
 .player__trackPlay {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: row;
   flex-direction: row;
 }
 
@@ -158,11 +127,8 @@
   width: auto;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: auto 1fr;
   grid-template-columns: auto 1fr;
   grid-template-areas: 'image author' 'image album';
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
 }
 
@@ -173,16 +139,10 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
+
   align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
   margin-right: 12px;
-  grid-row: 1;
-  -ms-grid-row-span: 2;
-  grid-column: 1;
   grid-area: image;
 }
 
@@ -194,8 +154,6 @@
 }
 
 .trackPlay__author {
-  grid-row: 1;
-  grid-column: 2;
   grid-area: author;
   min-width: 49px;
 }
@@ -210,8 +168,6 @@
 }
 
 .trackPlay__album {
-  grid-row: 2;
-  grid-column: 2;
   grid-area: album;
   min-width: 49px;
 }
@@ -225,15 +181,8 @@
 }
 
 .trackPlay__likeDis {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   margin-left: 26%;
 }
@@ -261,19 +210,11 @@
   stroke: #696969;
 }
 .volume__content {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: end;
-  -ms-flex-pack: end;
-  justify-content: end;
+  flex-direction: row; 
+ align-items: center;
+ justify-content: flex-end;
+ 
 }
 
 .volume__image {
@@ -342,5 +283,3 @@
   stroke: #ffffff;
   cursor: pointer;
 }
-
-
