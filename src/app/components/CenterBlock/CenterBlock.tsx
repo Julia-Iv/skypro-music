@@ -1,21 +1,76 @@
-import Link from 'next/link';
+'use client';
+
+import { useState, useMemo } from 'react';
 import styles from './centerblock.module.css';
 import classNames from 'classnames';
 import Search from '../Search/Search';
+import Filter from '../Filter/Filter';
+import Track from '../Track/Track';
 import { data } from '@/data';
-import { formatTime } from '@/utils/helper';
 
 export default function CenterBlock() {
+  const [selectedAuthors, setSelectedAuthors] = useState<string[]>([]);
+  const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
+  const [sortOrder, setSortOrder] = useState<string>('По умолчанию');
+
+  const handleSelectAuthor = (author: string) => {
+    setSelectedAuthors((prev) =>
+      prev.includes(author)
+        ? prev.filter((item) => item !== author)
+        : [...prev, author],
+    );
+  };
+
+  const handleSelectGenre = (genre: string) => {
+    setSelectedGenres((prev) =>
+      prev.includes(genre)
+        ? prev.filter((item) => item !== genre)
+        : [...prev, genre],
+    );
+  };
+  const filteredTracks = useMemo(() => {
+    let result = [...data];
+
+    if (selectedAuthors.length > 0) {
+      result = result.filter((track) => selectedAuthors.includes(track.author));
+    }
+
+    if (selectedGenres.length > 0) {
+      result = result.filter((track) =>
+        track.genre.some((g) => selectedGenres.includes(g)),
+      );
+    }
+
+    if (sortOrder === 'Сначала новые') {
+      result.sort(
+        (a, b) =>
+          new Date(b.release_date).getTime() -
+          new Date(a.release_date).getTime(),
+      );
+    } else if (sortOrder === 'Сначала старые') {
+      result.sort(
+        (a, b) =>
+          new Date(a.release_date).getTime() -
+          new Date(b.release_date).getTime(),
+      );
+    }
+
+    return result;
+  }, [selectedAuthors, selectedGenres, sortOrder]);
+
   return (
     <div className={styles.centerblock}>
       <Search />
       <h2 className={styles.centerblock__h2}>Треки</h2>
-      <div className={styles.centerblock__filter}>
-        <div className={styles.filter__title}>Искать по:</div>
-        <div className={styles.filter__button}>исполнителю</div>
-        <div className={styles.filter__button}>году выпуска</div>
-        <div className={styles.filter__button}>жанру</div>
-      </div>
+      <Filter
+        tracks={data}
+        selectedAuthors={selectedAuthors}
+        onSelectAuthor={handleSelectAuthor}
+        selectedGenres={selectedGenres}
+        onSelectGenre={handleSelectGenre}
+        sortOrder={sortOrder}
+        onSelectSort={setSortOrder}
+      />
       <div className={styles.centerblock__content}>
         <div className={styles.content__title}>
           <div className={classNames(styles.playlistTitle__col, styles.col01)}>
@@ -34,42 +89,8 @@ export default function CenterBlock() {
           </div>
         </div>
         <div className={styles.content__playlist}>
-          {data.map((track) => (
-            <div key={track._id} className={styles.playlist__item}>
-              <div className={styles.playlist__track}>
-                <div className={styles.track__title}>
-                  <div className={styles.track__titleImage}>
-                    <svg className={styles.track__titleSvg}>
-                      <use xlinkHref="/img/icon/sprite.svg#icon-note"></use>
-                    </svg>
-                  </div>
-                  <div className="track__title-text">
-                    <Link className={styles.track__titleLink} href="">
-                      {track.name}{' '}
-                      <span className={styles.track__titleSpan}></span>
-                    </Link>
-                  </div>
-                </div>
-                <div className={styles.track__author}>
-                  <Link className={styles.track__authorLink} href="">
-                    {track.author}
-                  </Link>
-                </div>
-                <div className={styles.track__album}>
-                  <Link className={styles.track__albumLink} href="">
-                    {track.album}{' '}
-                  </Link>
-                </div>
-                <div className="track__time">
-                  <svg className={styles.track__timeSvg}>
-                    <use xlinkHref="/img/icon/sprite.svg#icon-like"></use>
-                  </svg>
-                  <span className={styles.track__timeText}>
-                    {formatTime(track.duration_in_seconds)}
-                  </span>
-                </div>
-              </div>
-            </div>
+          {filteredTracks.map((track) => (
+            <Track key={track._id} track={track} />
           ))}
         </div>
       </div>
