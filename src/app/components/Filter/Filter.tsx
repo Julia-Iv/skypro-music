@@ -65,7 +65,7 @@ export default function Filter({
           })}
           onClick={() => handleFilterClick('author')}
         >
-          по исполнителю
+          исполнителю
           {selectedAuthors.length > 0 && (
             <span className={styles.filter__badge}>
               {selectedAuthors.length}

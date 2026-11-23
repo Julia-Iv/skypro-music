@@ -1,3 +1,9 @@
+.playlist__item {
+  width: 100%;
+  display: block;
+  margin-bottom: 12px;
+}
+
 .playlist__track {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -43,6 +49,7 @@
   -ms-flex-pack: center;
   justify-content: center;
   margin-right: 17px;
+  flex-shrink: 0;
 }
 
 .track__titleSvg {

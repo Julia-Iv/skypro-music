@@ -2,11 +2,11 @@
   width: 100%;
   min-height: 100vh;
   overflow-x: hidden;
-  background-color: #383838;
+  background-color: #181818;
 }
 
 .container {
-  max-width: 1920px;
+  max-width: 100%;
   min-height: 100vh;
   margin: 0 auto;
   position: relative;
