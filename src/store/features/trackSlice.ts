@@ -1,11 +1,14 @@
+'use client';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Track } from '@/app/sharedTypes/sharedTypes';
 
 type initialStateType = {
   currentTrack: null | Track;
+  isPlay: boolean;
 };
 const initialState: initialStateType = {
   currentTrack: null,
+  isPlay: false,
 };
 
 const trackSlice = createSlice({
@@ -14,8 +17,12 @@ const trackSlice = createSlice({
   reducers: {
     setCurrentTrack: (state, action: PayloadAction<Track>) => {
       state.currentTrack = action.payload;
+      state.isPlay = true;
+    },
+    setIsPlay: (state, action: PayloadAction<boolean>) => {
+      state.isPlay = action.payload;
     },
   },
 });
-export const { setCurrentTrack } = trackSlice.actions;
+export const { setCurrentTrack, setIsPlay } = trackSlice.actions;
 export const trackSliceReducer = trackSlice.reducer;
